@@ -12,6 +12,7 @@ import hr.tvz.android.tasksonfirerep.R
 import hr.tvz.android.tasksonfirerep.model.Task
 import kotlinx.android.synthetic.main.item_task.view.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 class TaskAdapter(private var items: MutableList<Task>,
                   private val context: Context,
@@ -29,7 +30,7 @@ class TaskAdapter(private var items: MutableList<Task>,
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: TaskAdapter.TaskViewHolder, position: Int) {
-        val date = dateFormat.format(items[position].CreatedAt)
+        val date = dateFormat.format(Date())
 
         holder.tvTitle.text = items[position].title
         holder.tvDescription.text = items[position].description
@@ -50,7 +51,7 @@ class TaskAdapter(private var items: MutableList<Task>,
     }
 
     fun updateTask(task: Task) {
-        val item = items.single { t -> t.id == task.id }
+        val item = items.single { t -> t.taskId == task.taskId }
         val index = items.indexOf(item)
 
         items[index] = task
@@ -58,7 +59,7 @@ class TaskAdapter(private var items: MutableList<Task>,
     }
 
     fun deleteTask(taskId: String) {
-        val item = items.single { t -> t.id == taskId }
+        val item = items.single { t -> t.taskId == taskId }
         val index = items.indexOf(item)
 
         items.removeAt(index)

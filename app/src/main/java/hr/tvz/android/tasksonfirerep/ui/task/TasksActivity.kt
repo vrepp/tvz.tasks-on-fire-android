@@ -121,7 +121,7 @@ class TasksActivity : AppCompatActivity(),
         prev?.let { ft.remove(it) }
         ft.addToBackStack(null)
 
-        val updateDialog = UpdateTaskDialog.newInstance(task.id, task.title, task.description)
+        val updateDialog = UpdateTaskDialog.newInstance(task.taskId, task.title, task.description)
         updateDialog.show(ft, UpdateTaskDialog.TAG)
     }
 
@@ -131,7 +131,7 @@ class TasksActivity : AppCompatActivity(),
         prev?.let { ft.remove(it) }
         ft.addToBackStack(null)
 
-        val deleteDialog = DeleteTaskDialog.newInstance(task.id, task.title, task.description)
+        val deleteDialog = DeleteTaskDialog.newInstance(task.taskId, task.title, task.description)
         deleteDialog.show(ft, DeleteTaskDialog.TAG)
     }
 

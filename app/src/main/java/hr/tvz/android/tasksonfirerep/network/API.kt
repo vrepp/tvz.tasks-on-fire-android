@@ -11,35 +11,41 @@ import hr.tvz.android.tasksonfirerep.util.BASE_URL
 import hr.tvz.android.tasksonfirerep.util.MySharedPreferences
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
+
 interface API {
     @Headers("No-Authentication: true")
-    @POST("/login")
+    @POST("/api/v1/auth/login")
     fun login(@Body login: Login) : Observable<LoginTokenResponse>
 
     @Headers("No-Authentication: true")
-    @POST("/register")
+    @POST("/api/v1/auth/register")
     fun register(@Body register: Login) : Observable<BasicResponse>
 
-    @GET("/tasks/")
+    @GET("/api/v1/tasks/")
     fun getAllTask() : Observable<TaskListResponse>
 
-    @POST("/tasks/")
+    @POST("/api/v1/tasks/")
     fun createTask(@Body basicTask: BasicTask) : Observable<TaskCreateResponse>
 
-    @PUT("/tasks/{id}")
+    @PUT("/api/v1/tasks/{id}")
     fun update(@Body task: BasicTask, @Path("id") id: String) : Observable<TaskUpdateResponse>
 
-    @DELETE("/tasks/{id}")
+    @DELETE("/api/v1/tasks/{id}")
     fun delete(@Path("id") id: String) : Observable<TaskDeleteResponse>
 
     companion object {
         fun create(): API {
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
             val client: OkHttpClient = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
                 .addInterceptor {
                     val header= it.request().header("No-Authentication")
                     val token = MySharedPreferences.getToken()

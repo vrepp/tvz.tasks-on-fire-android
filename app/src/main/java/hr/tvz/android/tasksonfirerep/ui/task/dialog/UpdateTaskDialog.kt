@@ -56,7 +56,7 @@ class UpdateTaskDialog: DialogFragment() {
         validator.add(inputLayoutTitle)
         tvDialogTitle.text = resources.getString(R.string.update_task)
 
-        tmpTask.id = arguments?.getString(EXTRA_ID)!!
+        tmpTask.taskId = arguments?.getString(EXTRA_ID)!!
         tmpTask.title = arguments?.getString(EXTRA_TITLE)!!
         tmpTask.description = arguments?.getString(EXTRA_DESCRIPTION)!!
 
@@ -68,7 +68,7 @@ class UpdateTaskDialog: DialogFragment() {
             tmpTask.description = etDescription.text.toString()
 
             if (validator.result()) {
-                myListener.updateTask(tmpTask.id, tmpTask.title, tmpTask.description)
+                myListener.updateTask(tmpTask.taskId, tmpTask.title, tmpTask.description)
                 tmpTask.clear()
                 dismiss()
             }

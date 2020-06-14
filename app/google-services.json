@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "213382212912",
+    "firebase_url": "https://tasksonfire-87be6.firebaseio.com",
+    "project_id": "tasksonfire-87be6",
+    "storage_bucket": "tasksonfire-87be6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213382212912:android:a3518ee904f5581d486cf5",
+        "android_client_info": {
+          "package_name": "hr.tvz.android.tasksonfirerep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213382212912-371r6l22ojvsd7oudsmmgcl4gg9epfpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACBmjoKo3AQT4NtwJqF7TG2giubhFO-xY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213382212912-371r6l22ojvsd7oudsmmgcl4gg9epfpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

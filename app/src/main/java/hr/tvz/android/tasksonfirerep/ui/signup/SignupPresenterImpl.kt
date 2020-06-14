@@ -1,9 +1,8 @@
 package hr.tvz.android.tasksonfirerep.ui.signup
 
-class SignupPresenterImpl(private val view: SignupView) :
-    SignupPresenter {
-    private val interactor: SignupInteractor =
-        SignupInteractorImpl(this)
+class SignupPresenterImpl(private val view: SignupView) : SignupPresenter {
+    private val interactor: SignupInteractor = SignupInteractorImpl(this)
+
     override fun signup(username: String, password: String) {
         view.showProgress()
         interactor.signup(username, password)

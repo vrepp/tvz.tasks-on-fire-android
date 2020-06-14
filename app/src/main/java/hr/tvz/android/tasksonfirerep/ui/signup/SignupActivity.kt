@@ -7,6 +7,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import hr.tvz.android.tasksonfirerep.R
 import hr.tvz.android.tasksonfirerep.util.Validator
 import hr.tvz.android.tasksonfirerep.util.color
@@ -16,9 +17,13 @@ class SignupActivity : AppCompatActivity(), SignupView {
     lateinit var presenter: SignupPresenter
     private val validator = Validator()
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_singup)
+
+        auth = FirebaseAuth.getInstance()
 
         validator
             .add(inputUsername)
@@ -47,10 +52,21 @@ class SignupActivity : AppCompatActivity(), SignupView {
     }
 
     fun signup(view: View) {
-        val username = inputUsername.editText?.text.toString()
+        val email = inputUsername.editText?.text.toString()
         val password = inputPassword.editText?.text.toString()
 
-        if (validator.result()) presenter.signup(username, password)
+        if (validator.result()) {
+//            presenter.signup(username, password)
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val user = auth.currentUser
+                        presenter.onSuccess()
+                    } else {
+                        presenter.onError(401, "Error auth")
+                    }
+                }
+        }
     }
 
     override fun showProgress() {

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">TasksOnFire</string>
-    <string name="username">User name</string>
+    <string name="username">Email</string>
     <string name="password">Password</string>
     <string name="signin">Login</string>
     <string name="signup">Register</string>
     <string name="login_wellcome">Please login with you credentials</string>
-    <string name="signup_wellcome">Type an username and password to create an account</string>
+    <string name="signup_wellcome">Type an email and password to create an account</string>
     <string name="successfull_register">Successful registration</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
@@ -15,7 +15,7 @@
     <string name="my_todo_list">My todo list</string>
     <string name="logout">Logout</string>
     <string name="back">back</string>
-    <string name="back_to_signup_message">Please, back to login screen and use your username and password for signin
+    <string name="back_to_signup_message">Use your email and password to login
     </string>
     <string name="error_empty">This field is required</string>
     <string name="update_task">Update task</string>

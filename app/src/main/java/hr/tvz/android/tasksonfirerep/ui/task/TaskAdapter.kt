@@ -57,8 +57,8 @@ class TaskAdapter(private var items: MutableList<Task>,
         notifyItemChanged(index)
     }
 
-    fun deleteTask(task: Task) {
-        val item = items.single { t -> t.id == task.id }
+    fun deleteTask(taskId: String) {
+        val item = items.single { t -> t.id == taskId }
         val index = items.indexOf(item)
 
         items.removeAt(index)

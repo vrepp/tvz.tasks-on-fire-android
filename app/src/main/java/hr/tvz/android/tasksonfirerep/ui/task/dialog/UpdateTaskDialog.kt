@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.task_dialog.*
 import java.util.*
 
 class UpdateTaskDialog: DialogFragment() {
-    private var tmpTask: Task = Task(0, "", "", Date())
+    private var tmpTask: Task = Task("", "", "", Date())
     private lateinit var myListener: UpdateTaskListener
     private val validator = Validator()
 
@@ -23,12 +23,12 @@ class UpdateTaskDialog: DialogFragment() {
         private const val EXTRA_DESCRIPTION = "description"
         const val TAG = "update_dialog"
 
-        fun newInstance(id: Int, title: String, description: String): UpdateTaskDialog {
+        fun newInstance(id: String, title: String, description: String): UpdateTaskDialog {
             val fragment =
                 UpdateTaskDialog()
 
             val args = Bundle()
-            args.putInt(UpdateTaskDialog.Companion.EXTRA_ID, id)
+            args.putString(EXTRA_ID, id)
             args.putString(EXTRA_TITLE, title)
             args.putString(EXTRA_DESCRIPTION, description)
 
@@ -56,7 +56,7 @@ class UpdateTaskDialog: DialogFragment() {
         validator.add(inputLayoutTitle)
         tvDialogTitle.text = resources.getString(R.string.update_task)
 
-        tmpTask.id = arguments?.getInt(EXTRA_ID)!!
+        tmpTask.id = arguments?.getString(EXTRA_ID)!!
         tmpTask.title = arguments?.getString(EXTRA_TITLE)!!
         tmpTask.description = arguments?.getString(EXTRA_DESCRIPTION)!!
 
@@ -91,5 +91,5 @@ class UpdateTaskDialog: DialogFragment() {
 }
 
 interface UpdateTaskListener {
-    fun updateTask(id: Int, title: String, description: String)
+    fun updateTask(id: String, title: String, description: String)
 }

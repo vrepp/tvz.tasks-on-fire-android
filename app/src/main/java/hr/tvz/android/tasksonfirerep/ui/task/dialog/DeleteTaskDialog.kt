@@ -18,11 +18,11 @@ class DeleteTaskDialog: DialogFragment() {
         private const val EXTRA_DESCRIPTION = "description"
         const val TAG = "delete_dialog"
 
-        fun newInstance(id: Int, title: String, description: String): DeleteTaskDialog {
+        fun newInstance(id: String, title: String, description: String): DeleteTaskDialog {
             val fragment = DeleteTaskDialog()
 
             val args = Bundle()
-            args.putInt(EXTRA_ID, id)
+            args.putString(EXTRA_ID, id)
             args.putString(EXTRA_TITLE, title)
             args.putString(EXTRA_DESCRIPTION, description)
 
@@ -47,7 +47,7 @@ class DeleteTaskDialog: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val id = arguments?.getInt(EXTRA_ID)
+        val id = arguments?.getString(EXTRA_ID)
         val title = arguments?.getString(EXTRA_TITLE)
         val description = arguments?.getString(EXTRA_DESCRIPTION)
 
@@ -76,5 +76,5 @@ class DeleteTaskDialog: DialogFragment() {
 }
 
 interface DeleteTaskListener {
-    fun deleteTask(id: Int)
+    fun deleteTask(id: String)
 }

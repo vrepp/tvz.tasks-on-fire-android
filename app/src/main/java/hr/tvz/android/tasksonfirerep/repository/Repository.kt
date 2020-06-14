@@ -38,14 +38,14 @@ object Repository {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun updateTask(id: Int, title: String, description: String): Observable<TaskUpdateResponse> {
+    fun updateTask(id: String, title: String, description: String): Observable<TaskUpdateResponse> {
         val data = BasicTask(title, description)
         return client.update(data, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun deleteTask(id: Int): Observable<TaskDeleteResponse> {
+    fun deleteTask(id: String): Observable<TaskDeleteResponse> {
         return client.delete(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

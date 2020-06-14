@@ -10,5 +10,5 @@ interface TaskView {
     fun hideProgress()
     fun onTaskCreatedSuccess(task: Task)
     fun onTaskUpdatedSuccess(task: Task)
-    fun onTaskDeletedSuccess(task: Task)
+    fun onTaskDeletedSuccess(taskId: String)
 }

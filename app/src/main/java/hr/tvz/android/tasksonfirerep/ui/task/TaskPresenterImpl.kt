@@ -2,8 +2,7 @@ package hr.tvz.android.tasksonfirerep.ui.task
 
 import hr.tvz.android.tasksonfirerep.model.Task
 
-class TaskPresenterImpl(private val view: TaskView):
-    TaskPresenter {
+class TaskPresenterImpl(private val view: TaskView): TaskPresenter {
     private val interactor: TaskInteractor =
         TaskInteractorImpl(this)
 
@@ -30,7 +29,7 @@ class TaskPresenterImpl(private val view: TaskView):
         view.onTaskCreatedSuccess(task)
     }
 
-    override fun editTask(id: Int, title: String, description: String) {
+    override fun editTask(id: String, title: String, description: String) {
         interactor.updateTask(id, title, description)
     }
 
@@ -38,11 +37,11 @@ class TaskPresenterImpl(private val view: TaskView):
         view.onTaskUpdatedSuccess(task)
     }
 
-    override fun deleteTask(id: Int) {
+    override fun deleteTask(id: String) {
         interactor.deleteTask(id)
     }
 
-    override fun onTaskDeletedSuccess(task: Task) {
-        view.onTaskDeletedSuccess(task)
+    override fun onTaskDeletedSuccess(taskId: String) {
+        view.onTaskDeletedSuccess(taskId)
     }
 }

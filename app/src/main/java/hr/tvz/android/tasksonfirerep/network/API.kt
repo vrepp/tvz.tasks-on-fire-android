@@ -18,24 +18,24 @@ import retrofit2.http.*
 
 interface API {
     @Headers("No-Authentication: true")
-    @POST("/v1/login")
+    @POST("/login")
     fun login(@Body login: Login) : Observable<LoginTokenResponse>
 
     @Headers("No-Authentication: true")
-    @POST("/v1/register")
-    fun register(@Body signup: Login) : Observable<BasicResponse>
+    @POST("/register")
+    fun register(@Body register: Login) : Observable<BasicResponse>
 
-    @GET("/v1/todo/all")
+    @GET("/tasks/")
     fun getAllTask() : Observable<TaskListResponse>
 
-    @POST("/v1/todo/create")
+    @POST("/tasks/")
     fun createTask(@Body basicTask: BasicTask) : Observable<TaskCreateResponse>
 
-    @PUT("/v1/todo/update/{id}")
-    fun update(@Body task: BasicTask, @Path("id") id: Int) : Observable<TaskUpdateResponse>
+    @PUT("/tasks/{id}")
+    fun update(@Body task: BasicTask, @Path("id") id: String) : Observable<TaskUpdateResponse>
 
-    @DELETE("/v1/todo/delete/{id}")
-    fun delete(@Path("id") id: Int) : Observable<TaskDeleteResponse>
+    @DELETE("/tasks/{id}")
+    fun delete(@Path("id") id: String) : Observable<TaskDeleteResponse>
 
     companion object {
         fun create(): API {
@@ -67,7 +67,8 @@ interface API {
                         }
                     }
                     response
-                }.build()
+                }
+                .build()
 
             val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
             val retrofit = Retrofit.Builder()

@@ -4,5 +4,5 @@ import hr.tvz.android.tasksonfirerep.model.Task
 
 data class TaskDeleteResponse (
     val message: String,
-    val task: Task
+    val taskId: String
 )

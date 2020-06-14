@@ -4,13 +4,12 @@ import android.annotation.SuppressLint
 import hr.tvz.android.tasksonfirerep.repository.Repository
 import hr.tvz.android.tasksonfirerep.util.ApiError
 
-class TaskInteractorImpl(private val presenter: TaskPresenter) :
-    TaskInteractor {
+class TaskInteractorImpl(private val presenter: TaskPresenter) : TaskInteractor {
     @SuppressLint("CheckResult")
     override fun getAllTask() {
         Repository.getAllTask()
             .subscribe({ list ->
-                presenter.onGetAllTaskSuccess(list.data)
+                presenter.onGetAllTaskSuccess(list.tasks)
             }, { error ->
                 val errorApi = ApiError(error)
                 presenter.onError(errorApi.code, errorApi.message)
@@ -29,7 +28,7 @@ class TaskInteractorImpl(private val presenter: TaskPresenter) :
     }
 
     @SuppressLint("CheckResult")
-    override fun updateTask(id: Int, title: String, description: String) {
+    override fun updateTask(id: String, title: String, description: String) {
         Repository.updateTask(id, title, description)
             .subscribe({ taskUpdated ->
                 presenter.onTaskUpdatedSuccess(taskUpdated.task)
@@ -40,10 +39,10 @@ class TaskInteractorImpl(private val presenter: TaskPresenter) :
     }
 
     @SuppressLint("CheckResult")
-    override fun deleteTask(id: Int) {
+    override fun deleteTask(id: String) {
         Repository.deleteTask(id)
             .subscribe({ taskDeleted ->
-                presenter.onTaskDeletedSuccess(taskDeleted.task)
+                presenter.onTaskDeletedSuccess(taskDeleted.taskId)
             }, { error ->
                 val errorApi = ApiError(error)
                 presenter.onError(errorApi.code, errorApi.message)

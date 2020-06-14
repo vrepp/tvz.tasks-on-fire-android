@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class Task(
-    var id: Int,
+    var id: String,
     var title: String,
     var description: String,
     @SerializedName("created_at")
     var CreatedAt: Date) {
 
     fun clear() {
-        id = 0
+        id = ""
         title = ""
         description = ""
         CreatedAt = Date()

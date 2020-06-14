@@ -143,11 +143,11 @@ class TasksActivity : AppCompatActivity(),
         presenter.createTask(title, description)
     }
 
-    override fun updateTask(id: Int, title: String, description: String) {
+    override fun updateTask(id: String, title: String, description: String) {
         presenter.editTask(id, title, description)
     }
 
-    override fun deleteTask(id: Int) {
+    override fun deleteTask(id: String) {
         presenter.deleteTask(id)
     }
 
@@ -164,8 +164,8 @@ class TasksActivity : AppCompatActivity(),
         adapter.updateTask(task)
     }
 
-    override fun onTaskDeletedSuccess(task: Task) {
-        adapter.deleteTask(task)
+    override fun onTaskDeletedSuccess(taskId: String) {
+        adapter.deleteTask(taskId)
     }
 
     override fun onError(code: Int, message: String) {
